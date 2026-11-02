@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://drazynth-vault.pages.dev/sitemap.xml
