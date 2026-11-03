@@ -4,7 +4,7 @@ import { usePageTitle } from '../lib/hooks'
 export default function NotFound() {
   usePageTitle('Page not found')
   return (
-    <div className="wrap section">
+    <div className="wrap stagger section">
       <div className="message">
         <h1>That page doesn't exist</h1>
         <p>The link may be old, or the resource may have been unpublished.</p>

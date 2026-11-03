@@ -15,24 +15,26 @@ interface Props {
 /** Lazy, responsive Sanity image with a graceful fallback when missing or broken. */
 export function Img({ image, alt, width = 800, sizes = '(max-width: 640px) 90vw, 400px', eager, className }: Props) {
   const [failed, setFailed] = useState(false)
+  const [loaded, setLoaded] = useState(false)
   const src = imageUrl(image, width)
   if (!src || failed) {
     return (
       <div className={`img-fallback ${className || ''}`} role="img" aria-label={`${alt} (no image available)`}>
-        <ImageOff size={22} aria-hidden="true" />
+        <ImageOff size={20} aria-hidden="true" />
       </div>
     )
   }
   const widths = [320, 480, 640, 960, 1280].filter((w) => w <= Math.max(width, 640))
   return (
     <img
-      className={className}
+      className={`img-fade ${loaded ? 'is-in' : ''} ${className || ''}`}
       src={src}
       srcSet={imageSrcSet(image, widths)}
       sizes={sizes}
       alt={alt}
       loading={eager ? 'eager' : 'lazy'}
       decoding="async"
+      onLoad={() => setLoaded(true)}
       onError={() => setFailed(true)}
     />
   )

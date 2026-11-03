@@ -51,7 +51,7 @@ function Detail({ r }: { r: Resource }) {
   )
 
   return (
-    <div className="wrap section">
+    <div className="wrap stagger section">
       <nav className="crumbs" aria-label="Breadcrumb">
         <Link to="/">Home</Link> <span aria-hidden="true">/</span>{' '}
         {cat && (<><Link to={`/category/${cat.slug}`}>{cat.title}</Link> <span aria-hidden="true">/</span>{' '}</>)}
@@ -85,7 +85,7 @@ function Detail({ r }: { r: Resource }) {
             </div>
           )}
 
-          <DownloadPanel resourceId={r._id} title={r.title} downloadUrl={r.downloadUrl} />
+          <DownloadPanel resourceId={r._id} title={r.title} downloadUrl={r.downloadUrl} downloadLinks={r.downloadLinks} />
 
           {visibleRows.length > 0 && (
             <dl className="facts">

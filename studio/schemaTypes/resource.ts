@@ -27,6 +27,13 @@ export const resource = defineType({
       media,
     }),
   },
+  validation: (Rule) => Rule.custom((doc: any) => {
+    const hasLegacy = typeof doc?.downloadUrl === 'string' && doc.downloadUrl.trim().length > 0
+    const hasNamed = Array.isArray(doc?.downloadLinks) && doc.downloadLinks.some((item: any) =>
+      typeof item?.url === 'string' && item.url.trim().length > 0,
+    )
+    return hasLegacy || hasNamed || 'Add at least one download URL or one named download link.'
+  }),
   fields: [
     defineField({ name: 'title', title: 'Name', type: 'string', validation: (r) => r.required().max(90) }),
     defineField({
@@ -108,7 +115,23 @@ export const resource = defineType({
       title: 'Download URL (Google Drive)',
       description: 'Paste the Drive share link. Set sharing to "Anyone with the link" first.',
       type: 'url',
-      validation: (r) => r.required().uri(webUrl),
+      validation: (r) => r.uri(webUrl),
+    }),
+    defineField({
+      name: 'downloadLinks',
+      title: 'Additional named download links',
+      description: 'Add multiple buttons for different files or versions. Each link needs a label and URL. The old Download URL above remains supported.',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({ name: 'label', title: 'Button label', type: 'string', validation: (r) => r.required().max(50) }),
+            defineField({ name: 'url', title: 'Download URL', type: 'url', validation: (r) => r.required().uri(webUrl) }),
+          ],
+          preview: { select: { title: 'label', subtitle: 'url' } },
+        },
+      ],
     }),
     defineField({ name: 'compatibleApp', title: 'Compatible app', type: 'string' }),
     defineField({ name: 'compatibilityNotes', title: 'Compatibility notes', type: 'text', rows: 3 }),

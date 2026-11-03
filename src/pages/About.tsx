@@ -5,7 +5,7 @@ import { usePageTitle } from '../lib/hooks'
 export default function About() {
   usePageTitle('About and contact')
   return (
-    <div className="wrap section narrow">
+    <div className="wrap stagger section narrow">
       <h1 className="page-title">About and contact</h1>
       <p className="lede">DRAZYNTH VAULT is a library of resources for video editors: XML presets, custom effects, APKs, SFX and overlays.</p>
       <p>Each resource has its own page with previews and details. Files are hosted on Google Drive and linked from here, they are not stored on this website.</p>

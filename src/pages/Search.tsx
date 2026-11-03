@@ -23,7 +23,7 @@ export default function SearchPage() {
   }
 
   return (
-    <div className="wrap section">
+    <div className="wrap stagger section">
       <h1 className="page-title">Search</h1>
       <div className="toolbar">
         <SearchBox value={q} onSubmit={(v) => update({ q: v })} onClear={() => update({ q: '' })} />

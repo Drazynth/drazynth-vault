@@ -32,7 +32,7 @@ function CategoryView({ slug }: { slug: string }) {
   const filtering = Boolean(q || tag)
 
   return (
-    <div className="wrap section">
+    <div className="wrap stagger section">
       <nav className="crumbs" aria-label="Breadcrumb">
         <Link to="/">Home</Link> <span aria-hidden="true">/</span> <span aria-current="page">{category.title}</span>
       </nav>

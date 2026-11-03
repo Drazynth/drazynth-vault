@@ -4,8 +4,8 @@ import type { ResourceSummary } from '../lib/types'
 export function ResourceGrid({ items }: { items: ResourceSummary[] }) {
   return (
     <div className="grid">
-      {items.map((r) => (
-        <ResourceCard key={r._id} r={r} />
+      {items.map((r, i) => (
+        <ResourceCard key={r._id} r={r} index={i} />
       ))}
     </div>
   )

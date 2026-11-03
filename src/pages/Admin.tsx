@@ -9,7 +9,7 @@ import { usePageTitle } from '../lib/hooks'
 export default function Admin() {
   usePageTitle('Admin')
   return (
-    <div className="wrap section narrow">
+    <div className="wrap stagger section narrow">
       <h1 className="page-title"><ShieldCheck size={26} aria-hidden="true" /> Admin</h1>
       <p className="lede">Resources are managed in the DRAZYNTH VAULT Studio. Sign in there with the owner account.</p>
       {STUDIO_URL ? (

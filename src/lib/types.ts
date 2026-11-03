@@ -29,6 +29,7 @@ export interface Resource extends ResourceSummary {
   previewVideoUrl?: string
   previewAudioUrl?: string
   downloadUrl?: string
+  downloadLinks?: { label: string; url: string }[]
   compatibilityNotes?: string
   versionNotes?: string
   resolution?: string

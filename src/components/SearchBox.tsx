@@ -22,7 +22,7 @@ export function SearchBox({ value = '', placeholder = 'Search presets, effects, 
         onSubmit(text.trim())
       }}
     >
-      <Search size={18} aria-hidden="true" className="searchbox-icon" />
+      <Search size={17} aria-hidden="true" className="searchbox-icon" />
       <input
         type="search"
         value={text}

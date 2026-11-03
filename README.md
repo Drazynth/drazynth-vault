@@ -58,7 +58,7 @@ npm run dev                 # http://localhost:5173
 2. In Cloudflare, go to **Workers & Pages > Create > Pages > Connect to Git** and pick the repo.
 3. Build settings: framework **Vite**, build command `npm run build`, output directory `dist`.
 4. Add the environment variables from `.env.example` (`VITE_SANITY_PROJECT_ID`, `VITE_SANITY_DATASET`, `VITE_STUDIO_URL`, `VITE_CONTACT_EMAIL`).
-5. Deploy. `public/_redirects` makes links like `/resources/some-name` work when opened directly.
+5. Deploy. Cloudflare Pages provides the SPA fallback for client-side routes when no custom `404.html` is present. Do not add a catch-all `200` redirect file; it can cause redirect problems. The build generates `public/sitemap.xml` from published Sanity resources when `VITE_SANITY_PROJECT_ID` is configured.
 
 The site is now online independently of your computer.
 
@@ -70,7 +70,7 @@ The site is now online independently of your computer.
 2. Click **Resource > Create**.
 3. Fill in: Name, click **Generate** on the URL slug, choose the **Category**, write the short description.
 4. Upload the thumbnail and as many screenshots as you like.
-5. Paste the **Download URL** (Google Drive). Optional: preview video link, audio preview (SFX), tags, version, file size, etc.
+5. Add at least one download. For one file, use **Download URL**. For multiple files, use **Additional named download links** and add a label plus URL for each button (for example, XML, Preview version, Full pack). Existing resources using the old Download URL continue to work. Optional: preview video link, audio preview (SFX), tags, version, file size, etc.
 6. Press **Publish**. Use the menu next to Publish to **Unpublish** or **Delete**. Leaving it unpublished keeps it as a draft.
 
 Featured items: turn on **Featured on home page**. Order: lower **Manual order** numbers appear first in category pages.
@@ -84,7 +84,7 @@ Right-click the file in Drive > Share > General access > **Anyone with the link*
 
 - First click on **Get Download** saves a note for that one resource in `sessionStorage` and opens the YouTube channel in a new tab.
 - The button on that page becomes **Continue to Download**. Pressing it opens that resource's own Drive link.
-- Every resource uses its own storage key (`dv:download:<id>`), so one resource can never open another's file.
+- Every download button uses its own storage key (`dv:download:<resource-id>:<index>`), so one button cannot open another file. Existing single-link resources continue to work.
 - **Cancel** or **Start over** resets it. If a browser blocks the new tab, a plain link to YouTube is shown.
 - The site does not check that anyone subscribed or watched anything, and the site never claims otherwise. It only sends people to your channel first.
 - The note lives in the browser tab. Closing the tab resets it.

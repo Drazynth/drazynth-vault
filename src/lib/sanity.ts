@@ -99,7 +99,7 @@ export async function getResource(slug: string): Promise<Resource | null> {
     _id, title, "slug": slug.current, categories, description, details, instructions, tags,
     compatibleApp, compatibilityNotes, fileFormat, fileSize, version, versionNotes,
     resolution, androidVersion, isUnofficial, publishedAt, featured,
-    previewUrl, previewVideoUrl, previewAudioUrl, downloadUrl,
+    previewUrl, previewVideoUrl, previewAudioUrl, downloadUrl, downloadLinks[]{label, url},
     "thumbnail": thumbnail{asset, alt},
     "screenshots": screenshots[]{asset, alt},
     "appIcon": appIcon{asset}, "waveform": waveform{asset}

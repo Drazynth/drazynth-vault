@@ -6,7 +6,7 @@ const contact = CONTACT_EMAIL || 'the YouTube or Telegram channel linked in the 
 export function Privacy() {
   usePageTitle('Privacy Policy')
   return (
-    <div className="wrap section narrow prose">
+    <div className="wrap stagger section narrow prose">
       <h1 className="page-title">Privacy Policy</h1>
       <p className="muted">Plain-language summary. Have a lawyer review this before relying on it.</p>
       <h2>What we collect</h2>
@@ -22,7 +22,7 @@ export function Privacy() {
 export function Terms() {
   usePageTitle('Terms of Use')
   return (
-    <div className="wrap section narrow prose">
+    <div className="wrap stagger section narrow prose">
       <h1 className="page-title">Terms of Use</h1>
       <p className="muted">Plain-language summary. Have a lawyer review this before relying on it.</p>
       <h2>Third-party links</h2>

@@ -40,6 +40,7 @@ export function Gallery({ r }: { r: Resource }) {
   return (
     <div className="gallery">
       <div className="stage">
+        <div className="stage-in" key={current.id}>
         {current.type === 'video' && video?.kind === 'youtube' && (
           <iframe src={video.embed} title={`${r.title} preview video`} loading="lazy" allow="encrypted-media; picture-in-picture" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" />
         )}
@@ -61,6 +62,7 @@ export function Gallery({ r }: { r: Resource }) {
           ) : (
             <img src={current.src} alt={current.alt} onError={() => setRemoteFailed(true)} referrerPolicy="no-referrer" />
           ))}
+        </div>
       </div>
 
       {slides.length > 1 && (
@@ -74,7 +76,7 @@ export function Gallery({ r }: { r: Resource }) {
                 aria-current={i === active}
               >
                 {s.type === 'video' ? (
-                  <span className="thumb-video"><Play size={18} aria-hidden="true" /></span>
+                  <span className="thumb-video"><Play size={16} aria-hidden="true" /></span>
                 ) : s.type === 'image' ? (
                   <img src={imageUrl(s.image, 160)} alt="" loading="lazy" decoding="async" />
                 ) : (
