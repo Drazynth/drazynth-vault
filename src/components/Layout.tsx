@@ -4,6 +4,7 @@ import { Menu, Search, X, Youtube, Send } from 'lucide-react'
 import { CATEGORIES, SITE_NAME, TELEGRAM_URL, YOUTUBE_URL } from '../config'
 import { usePointerEffects, useScrollEffects } from '../lib/motion'
 import { Intro } from './Intro'
+import { WelcomeModal } from './WelcomeModal'
 
 function Wordmark() {
   return (
