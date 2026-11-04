@@ -49,6 +49,7 @@ export function Layout() {
   return (
     <>
       <Intro />
+      {pathname === '/' && <WelcomeModal />}
       <div className="ambient" aria-hidden="true"><i /><i /></div>
       <a href="#main" className="skip" onClick={() => main.current?.focus()}>Skip to content</a>
       <header className="site-header" ref={header}>
