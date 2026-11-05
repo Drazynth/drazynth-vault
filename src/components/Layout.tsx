@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { Menu, Search, X, Youtube, Send } from 'lucide-react'
 import { CATEGORIES, SITE_NAME, TELEGRAM_URL, YOUTUBE_URL } from '../config'
-import { usePointerEffects, useScrollEffects } from '../lib/motion'
+import { reducedMotion, usePointerEffects, useScrollEffects } from '../lib/motion'
 import { Intro } from './Intro'
 import { WelcomeModal } from './WelcomeModal'
 
@@ -26,6 +26,14 @@ function Wordmark() {
 
 export function Layout() {
   const [open, setOpen] = useState(false)
+  const [introFinished, setIntroFinished] = useState(() => {
+  try {
+    return Boolean(sessionStorage.getItem('dv:intro-seen')) || reducedMotion()
+  } catch {
+    return reducedMotion()
+  }
+})
+
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const main = useRef<HTMLElement>(null)
@@ -34,6 +42,15 @@ export function Layout() {
 
   usePointerEffects()
   useScrollEffects(header, bar)
+  useEffect(() => {
+  if (introFinished) return
+
+  const timer = window.setTimeout(() => {
+    setIntroFinished(true)
+  }, 3500)
+
+  return () => window.clearTimeout(timer)
+}, [introFinished])
 
   useEffect(() => {
     setOpen(false)
@@ -49,7 +66,7 @@ export function Layout() {
   return (
     <>
       <Intro />
-      {pathname === '/' && <WelcomeModal />}
+     {pathname === '/' && introFinished && <WelcomeModal />}
       <div className="ambient" aria-hidden="true"><i /><i /></div>
       <a href="#main" className="skip" onClick={() => main.current?.focus()}>Skip to content</a>
       <header className="site-header" ref={header}>
